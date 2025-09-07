@@ -61,67 +61,39 @@ def create_confusion_matrix(results, all_labels, title, filename):
     plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.close()
 
-def generate_train_test_evaluation():
-    """Generate separate confusion matrices for train and test data"""
-    print("🎯 Generating train vs test evaluation...")
+def generate_test_evaluation():
+    """Generate confusion matrix for test data only (training evaluation is meaningless due to data leakage)"""
+    print("🎯 Generating test set evaluation...")
+    print("⚠️  NOTE: Training set evaluation skipped - would show 100% accuracy due to data leakage")
+    print("    (RAG system searches against same training questions used to build FAISS index)")
     
     rag = BengaliLegalRAG()
     
-    # Evaluate on train data (should perform better)
-    print("📊 Evaluating on train data...")
-    train_results = evaluate_on_data(rag, rag.train_questions, rag.train_tags, "train")
-    
-    # Evaluate on test data (real performance)
-    print("📊 Evaluating on test data...")
+    # Evaluate ONLY on test data (real performance)
+    print("📊 Evaluating on test data (real performance)...")
     test_results = evaluate_on_data(rag, rag.test_questions, rag.test_tags, "test")
     
-    # Get all unique labels
-    all_labels = sorted(list(set(
-        train_results['true_labels'] + train_results['predictions'] +
-        test_results['true_labels'] + test_results['predictions']
-    )))
-    
-    # Create train confusion matrix
-    train_path = "confusion_matrix_results/train_confusion_matrix.png"
-    create_confusion_matrix(
-        train_results, all_labels, 
-        "Bengali Legal RAG - Train Data Performance", 
-        train_path
-    )
+    # Get all unique labels from test set
+    all_labels = sorted(list(set(test_results['true_labels'] + test_results['predictions'])))
     
     # Create test confusion matrix
-    test_path = "confusion_matrix_results/test_confusion_matrix.png"
+    test_path = "confusion_matrix_results/bengali_legal_test_confusion_matrix.png"
     create_confusion_matrix(
         test_results, all_labels,
-        "Bengali Legal RAG - Test Data Performance",
+        "Bengali Legal RAG - Test Set Performance (Real Accuracy)",
         test_path
     )
     
-    # Create JSON report with both results
+    # Create JSON report with test results only
     report_data = {
         "evaluation_summary": {
-            "train_accuracy": train_results['accuracy'],
             "test_accuracy": test_results['accuracy'],
-            "train_samples": len(train_results['true_labels']),
             "test_samples": len(test_results['true_labels']),
             "categories": len(all_labels),
-            "performance_difference": train_results['accuracy'] - test_results['accuracy']
+            "note": "Training accuracy not reported due to data leakage (100% due to exact matching)"
         },
-        "train_predictions": [],
         "test_predictions": []
     }
-    
-    # Add train predictions
-    for i, (question, true_label, predicted_label) in enumerate(zip(
-        rag.train_questions, train_results['true_labels'], train_results['predictions']
-    )):
-        report_data["train_predictions"].append({
-            "id": i + 1,
-            "question": question,
-            "actual_label": true_label,
-            "predicted_label": predicted_label,
-            "correct": true_label == predicted_label
-        })
     
     # Add test predictions
     for i, (question, true_label, predicted_label) in enumerate(zip(
@@ -136,18 +108,16 @@ def generate_train_test_evaluation():
         })
     
     # Save JSON report
-    json_path = "confusion_matrix_results/train_test_predictions.json"
+    json_path = "confusion_matrix_results/test_predictions.json"
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(report_data, f, ensure_ascii=False, indent=2)
     
-    print(f"✅ Train confusion matrix: {train_path}")
     print(f"✅ Test confusion matrix: {test_path}")
     print(f"📊 JSON predictions: {json_path}")
-    print(f"🎯 Train accuracy: {train_results['accuracy']:.1%}")
-    print(f"🎯 Test accuracy: {test_results['accuracy']:.1%}")
-    print(f"📈 Difference: {(train_results['accuracy'] - test_results['accuracy'])*100:+.1f}%")
+    print(f"🎯 Real test accuracy: {test_results['accuracy']:.1%}")
+    print(f"📝 Training accuracy would be 100% (data leakage - not meaningful)")
     
-    return train_results, test_results
+    return test_results
 
 if __name__ == "__main__":
-    generate_train_test_evaluation()
+    generate_test_evaluation()

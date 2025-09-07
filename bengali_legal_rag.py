@@ -277,6 +277,11 @@ class BengaliLegalRAG:
             
         Returns:
             Evaluation metrics
+            
+        Note:
+            Training set evaluation will show inflated accuracy (~100%) due to data leakage.
+            The FAISS index is built from training questions, so evaluating on the same
+            training questions results in near-exact matches. Use test set for real performance.
         """
         if use_test_set:
             questions = self.test_questions
@@ -285,7 +290,7 @@ class BengaliLegalRAG:
         else:
             questions = self.train_questions
             true_tags = self.train_tags
-            logger.info("🧪 Evaluating on training set...")
+            logger.warning("⚠️  Evaluating on training set - expect inflated accuracy due to data leakage")
         
         predictions = []
         confidences = []
@@ -412,10 +417,8 @@ def main():
     print(f"  Average Confidence: {eval_results['average_confidence']:.3f}")
     print(f"  Confident Predictions: {eval_results['confident_predictions']}/{eval_results['total_samples']}")
     
-    # Generate confusion matrix
-    print(f"\n🎨 Generating confusion matrix...")
-    cm_path = "confusion_matrix_results/bengali_legal_confusion_matrix.png"
-    rag.create_confusion_matrix(save_path=cm_path, use_test_set=True)
+    # Note: Confusion matrix generation moved to train_vs_test_evaluator.py
+    print(f"\n📊 To generate confusion matrix, run: python train_vs_test_evaluator.py")
     
     print(f"\n✅ System ready!")
     return rag

@@ -1,0 +1,1998 @@
+{
+  "evaluation_summary": {
+    "test_accuracy": 0.9401408450704225,
+    "test_samples": 284,
+    "categories": 14,
+    "note": "Training accuracy not reported due to data leakage (100% due to exact matching)"
+  },
+  "test_predictions": [
+    {
+      "id": 1,
+      "question": "আমি একটা জমি কিনেছি এখন নামজারি করতে চাই, শুধু দলিল থাকলে কি নামজারি হবে?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "question": "একাধিক নামজারির জন্য কি বেশি খরচ হবে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "question": "নামজারি করতে ছবির ফটোকপি আর দলিলের ফটোকপি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "question": "নামজারি করতে কত ফি হবে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "question": "আমার পিতা মারা গেছেন আমি তো জমি খাই, নামজারি করা লাগবে?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "question": "নামজারির জন্য নিবন্ধন করতে নিজের মোবাইল দরকার কি?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "question": "নামজারি করতে দলিল আর এনআইডির ফটোকপি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "question": "নামজারি নিবন্ধন করতে এনআইডি বা জন্মনিবন্ধন লাগে কি?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "question": "নামজারি মঞ্জুর হলে খতিয়ান প্রিন্ট কপি কোথায় থেকে পাবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "question": "শুনানীর সময় কি উপস্থিতি বাধ্যতামূলক?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 11,
+      "question": "আমার পিতা মারা গেছেন আমি তো জমি খাই, নামজারি করা যাবে?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 12,
+      "question": "নামজারি মামলার স্ট্যাটাস আজকে কিভাবে জানতে পারবো?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 13,
+      "question": "নামজারি জন্য নিবন্ধন করতে কি লাগে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 14,
+      "question": "নামজারি করতে ফটোকপির ফটোকপি ছাড়া আর কি লাগে?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 15,
+      "question": "নামজারি করার কাজ কি অফিসে গিয়েই করতে হয়?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 16,
+      "question": "আমার পিতা মারা গেছেন আমি তো জমি খাই নামজারি করা যাবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 17,
+      "question": "নামজারি মামলার অবস্থা সহজে জানার উপায় কি?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 18,
+      "question": "আমার বাবা মারা গেছেন এখন আমার নামে নামজারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 19,
+      "question": "নামজারি মামলার অবস্থা অফিস থেকে জানার উপায় কি?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 20,
+      "question": "খতিয়ান আমি নিজে কি অফিস থেকে নিতে পারবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_application_procedure",
+      "correct": false
+    },
+    {
+      "id": 21,
+      "question": "আমার প্রোফাইলে কি খতিয়ান কপি শো করবে?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": false
+    },
+    {
+      "id": 22,
+      "question": "আমার পিতা মারা গেছেন আমি জমি খাই, নামজারি করা হবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 23,
+      "question": "নামজারি করতে ছবির ফটোকপি আর ফটোকপি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 24,
+      "question": "আমি এলাকায় থাকি না, তাহলে নামজারি কিভাবে করবো?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 25,
+      "question": "শুনানীর জন্য কি কি মূল কাগজপত্রই নিয়ে যাবো?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 26,
+      "question": "আমরা তিনজন মিলে আবেদন করেছি, সবাইকে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 27,
+      "question": "নামজারির জন্য সরকারি ফি কত?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 28,
+      "question": "নামজারি মঞ্জুর হয়েছে খতিয়ান কপি কিভাবে নিতে পারি?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 29,
+      "question": "নামজারি করতে দলিলের ফটোকপি আর ফটোকপি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 30,
+      "question": "নামজারি সেবা নিতে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 31,
+      "question": "নামজারির জন্য নিবন্ধন করতে নিজের মোবাইল থাকতে হবে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 32,
+      "question": "আমি নামজারি কি নিজে করতে পারি?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 33,
+      "question": "প্রতিনিধি দিয়ে নামজারির আবেদন করলে তার পক্ষে কি কাগজ দিতে হয়।",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 34,
+      "question": "শ্রেণি ভুল আছে, সেটা কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 35,
+      "question": "একজন আবেদনকারী না গেলে কি শুনানী বাতিল হয়?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 36,
+      "question": "নিবন্ধন করতে কি নিজের জন্মনিবন্ধন লাগে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 37,
+      "question": "খতিয়ানে নাম ভুল লেখা আছে কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 38,
+      "question": "নামজারির শুনানীর নোটিশের জন্য পোস্ট অফিসে খোজ নিতে হবে কি না?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 39,
+      "question": "আবেদন দেওয়ার পরেও নোটিশ আসেনি, এখন কী করবো?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 40,
+      "question": "নামজারি করতে চাই, কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 41,
+      "question": "সব আবেদনকারী না গেলে কি সমস্যা হয় শুনানিতে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 42,
+      "question": "নামজারি করতে হলে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 43,
+      "question": "নামজারি মামলা এখনো ঠিক কি অবস্থায় আছে কিভাবে জানবো?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 44,
+      "question": "নামজারি আবেদন নিজে না করলে প্রতিনিধি দিয়ে করা যায় কি?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 45,
+      "question": "ওয়ারিশ মতে অন লাইনে নাম জারি করা যায় কি না?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 46,
+      "question": "নামঞ্জুর হলে আবার কি আবেদন করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 47,
+      "question": "খতিয়ানে জমির পরিমাণের ভুল কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 48,
+      "question": "আমি কারো সাহায্যে কি নামজারি করতে পারবো?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 49,
+      "question": "নামজারির খরচ কি ৫০০০ টাকা হওয়া স্বাভাবিক?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 50,
+      "question": "এসি (ল্যান্ড) শুনানী না নিয়ে নামঞ্জুর করেছেন?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 51,
+      "question": "মিউটেশন সেবা নিতে হলে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 52,
+      "question": "নামজারির জন্য নিবন্ধনের সময় কি কি লাগবে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 53,
+      "question": "নামজারির আবেদনের জন্য কত খরচ হবে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 54,
+      "question": "আমি নিজে নামজারি আবেদন কি করতে পারি?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 55,
+      "question": "নামজারির আবেদন নিজে না করলে প্রতিনিধি দিয়ে করা যায় কিনা?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 56,
+      "question": "নামজারির জন্য নিবন্ধন করতে জন্মনিবন্ধন লাগে কি?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 57,
+      "question": "আমি জমি খারিজ করাতে চাচ্ছিলাম এটার জন্য কি কোন টাকা পয়সা লাগবে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_required_documents",
+      "correct": false
+    },
+    {
+      "id": 58,
+      "question": "আমি বিদেশে থাকি, প্রতিনিধি দিয়ে নামজারি করালে কি তার নামে জমি হয়ে যাবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 59,
+      "question": "এনআইডি ছাড়া কি নামজারি সম্ভব?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 60,
+      "question": "অন্য কেউ কাগজ নিয়ে গেলে কি নামজারি শুনানী হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 61,
+      "question": "উত্তরাধিকার সূত্রে কি অনলাইনে নামজারি সম্ভব?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 62,
+      "question": "নামজারির জন্য নিবন্ধন করতে জন্মনিবন্ধন বা এনআইডি লাগে কি?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 63,
+      "question": "নামজারি আবেদন করেছি অনেকদিন কি আবস্থায় আছে জানবো কিভাবে?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 64,
+      "question": "বাবার মৃত্যুর পর নামজারি করতে হলে কিভাবে শুরু করবো?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_eligibility",
+      "correct": false
+    },
+    {
+      "id": 65,
+      "question": "নামজারির জন্য কি কাউকে দায়িত্ব দেওয়া যায়?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 66,
+      "question": "নামজারির জন্য অনলাইন নিবন্ধনে কি নথি জমা দিতে হয়?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 67,
+      "question": "আমি বিদেশে থাকি, প্রতিনিধি কি আমার নামজারি করতে পারে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 68,
+      "question": "আদালতের আদেশে মালিকানা পেয়েছি, এখন কি নামজারি করতে হবে?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 69,
+      "question": "খতিয়ানে জমির পরিমাণ ভুল আছে সংশোধন করতে কি করতে হবে?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 70,
+      "question": "আমি জমি কিনেছি আমার কি নামজারি লাগবে?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 71,
+      "question": "নামজারি করতে এনআইডির ফটোকপি আর দলিলের ফটোকপি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 72,
+      "question": "আমাদের বাবা মারা গেছেন এখন ওয়ারিশদের নামে নামজারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 73,
+      "question": "নামজারির সময় নিবন্ধনে কোন কোন কাগজ লাগে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 74,
+      "question": "ফটোকপির ফটোকপি দিয়ে নামজারি হবে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 75,
+      "question": "নামজারির আবেদন করতে সরকারি ফি কত?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 76,
+      "question": "নামজারি আবেদনের ফি কত?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 77,
+      "question": "আমি নিজে নামজারি করব কি করতে হবে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 78,
+      "question": "নামজারির জন্য কি উপজেলা ভূমি অফিসে যেতে হবে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 79,
+      "question": "দলিল আপলোড করা থাকলেও আবার দেখাতে হয় কেন?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 80,
+      "question": "নামজারি আবেদন করেছি এতদিন পর কি অবস্থায় আছে জানবো কিভাবে?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 81,
+      "question": "শুনানীর জন্য প্রয়োজনীয় কাগজপত্রই কি নিয়ে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 82,
+      "question": "শুনানীর জন্য সব প্রয়োজনীয় কাগজপত্র কি নিয়ে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 83,
+      "question": "আমি কারো সাহায্যে নামজারি করতে কি ভূমি অফিসে যাওয়া লাগবে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 84,
+      "question": "শুনানীর জন্য কাগজপত্রগুলো কি নিয়ে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 85,
+      "question": "খতিয়ান জমির পরিমাণ ভুল লেখা কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 86,
+      "question": "আমার বাবা মারা গেছেন এখন সব ওয়ারিশদের নামে নামজারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 87,
+      "question": "দলিলের ফটোকপি দিয়ে নামজারি হবে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 88,
+      "question": "অনলাইনে খারিজ করতে হলে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 89,
+      "question": "আমি বিদেশে থাকি, আমার আত্মীয় কি আমার নামজারি করতে পারে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 90,
+      "question": "খতিয়ানে জমির পরিমাণ ভুল লেখা আছে কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 91,
+      "question": "ওয়ারিশমতে নামজারি করতে কি কি করতে হবে:",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 92,
+      "question": "খতিয়ান নাম ভুল কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 93,
+      "question": "আমি দলিল করে জমি পাইছি নামজারি করা হবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 94,
+      "question": "নামজারি আবেদন নামঞ্জুর হলে কোন আদালতে যাবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 95,
+      "question": "শুনানীর নোটিশ হাতে পেতে পোস্ট অফিসে খোঁজ নিতে হবে কি?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 96,
+      "question": "নামজারি মামলা নামঞ্জুর হয়েছে কোন আদালতে যাবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 97,
+      "question": "আমি কয়েক সপ্তাহ আগে নামজারির আবেদন করেছিলাম, এখনও কোনো আপডেট নেই, জানবো কীভাবে?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_status_check",
+      "correct": false
+    },
+    {
+      "id": 98,
+      "question": "ভূমি কর না দিলে কি নামজারি করা সম্ভব?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 99,
+      "question": "শুনানীর জন্য কি কি দরকারি কাগজপত্রই নিয়ে যাবো?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 100,
+      "question": "কোর্টের রায় অনুযায়ী জমি পেলে নামজারি করতে হবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 101,
+      "question": "ডিক্রির ভিত্তিতে নামজারি করার পদ্ধতি কী?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_process",
+      "correct": false
+    },
+    {
+      "id": 102,
+      "question": "নামজারি আবেদন দেওয়ার পর ভূমি অফিসে যাওয়া লাগে কি?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_application_procedure",
+      "correct": false
+    },
+    {
+      "id": 103,
+      "question": "খতিয়ানে জমির পরিমাণ ভুল কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 104,
+      "question": "পোস্ট অফিসে গিয়ে শুনানীর নোটিশ চাইতে হয় কি?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 105,
+      "question": "কাগজ ঠিক থাকার পরেও নামঞ্জুর হলে কোথায় অভিযোগ করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": false
+    },
+    {
+      "id": 106,
+      "question": "শুনানীর দিন জানার জন্য মোবাইল করে খোঁজ নেব কিনা?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 107,
+      "question": "নামজারি মঞ্জুর হলে খতিয়ানের প্রিন্ট কপি কোথায় থেকে পাবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 108,
+      "question": "নামজারির জন্য শুনানীর নোটিশ কিভাবে পাবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 109,
+      "question": "একসাথে কয়েকটা আবেদন করলে কি বেশি খরচ হয়?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 110,
+      "question": "শুনানীর নোটিশের জন্য পোস্ট অফিসে খোঁজ নিতে হবে কি?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 111,
+      "question": "নামজারি মঞ্জুর হলে খতিয়ান কপি কিভাবে পেতে পারি?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 112,
+      "question": "নামজারির জন্য নিবন্ধন করতে কি মোবাইল দরকার?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 113,
+      "question": "শুনানীর জন্য সব কাগজপত্রগুলো কি নিয়ে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 114,
+      "question": "খারিজের ব্যাপারে জানতে চাই, মোবাইলে ফোন দিলেই চলবে?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 115,
+      "question": "নামজারি আবেদন করতে সরকারি ফি কত?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 116,
+      "question": "মেসেজ ছাড়া নামজারির তথ্য কিভাবে বের করবো?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": false
+    },
+    {
+      "id": 117,
+      "question": "আমি হচ্ছে জমি কিনসি এখন মিউটেশন করতে চাই কি করা লাগবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 118,
+      "question": "নামজারি করেছি অনেকদিন, কিন্তু এখনও কিছু জানি না, কোথায় আছে বা কতদূর গেছে বুঝবো কীভাবে?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_application_procedure",
+      "correct": false
+    },
+    {
+      "id": 119,
+      "question": "নামজারি কখন করা যাবে?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 120,
+      "question": "নামজারি আবেদন নিজে না করলে প্রতিনিধি দিয়ে করা যায় কিনা?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 121,
+      "question": "আচ্ছা আমি হচ্ছে জমি কিনেছি আরকি তো এখন খারিজ করাইতে হবে , কিভাবে করবো?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_eligibility",
+      "correct": false
+    },
+    {
+      "id": 122,
+      "question": "শুনানীর জন্য কি কি আসল কাগজপত্র নিয়ে যাবো?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 123,
+      "question": "খারিজ করতে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 124,
+      "question": "কারো হয়ে করলে কি জমির মালিকানা পরিবর্তন হয়?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 125,
+      "question": "অনলাইনে নামজারি করেছি মঞ্জুর হলে খতিয়ান কপি কোথায় পাবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 126,
+      "question": "আমি একটা জমি কিনেছি এখন নামজারি করতে চাই, দলিল ছাড়াও নামজারির জন্য কি কিছু লাগে?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 127,
+      "question": "আমার বাবা মারা গেছেন, এখন আমার নামে নাম জারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 128,
+      "question": "ইউনিয়ন ভূমি অফিসে না গেলে কি কিছু হবে না?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 129,
+      "question": "নামজারি কখন করতে হয়?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 130,
+      "question": "শুনানীর জন্য মূল কাগজপত্র কি নিয়ে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 131,
+      "question": "নামজারির জন্য নিবন্ধন করতে জন্মনিবন্ধন দরকার কি?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 132,
+      "question": "অনলাইনে নামজারি করেছি খতিয়ান মঞ্জুর হলে কি আমি উঠাতে পারবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 133,
+      "question": "আমার বাবা মারা গেছেন, এখন আমাদের নামে নামজারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 134,
+      "question": "একাধিক নামজারি আবেদনের জন্য কি বেশি সরকারি ফি লাগে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 135,
+      "question": "নামজারি করতে ছবি আর দলিল লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 136,
+      "question": "আমি কি নামজারি নিজে আবেদন করতে পারি?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 137,
+      "question": "আমার নামজারি মঞ্জুর হয়েছে খতিয়ান কি আমি উঠাতে পারবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 138,
+      "question": "আমি জমি কিনেছি, আমার নামজারি করা লাগবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 139,
+      "question": "আমি কারো সাহায্যে কি নামজারি করা যাবে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 140,
+      "question": "প্রতিনিধি দিয়ে নামজারি করালে কি তার নামে জমি হয়ে যাবে কিনা?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 141,
+      "question": "ইউনিয়ন অফিসে গিয়ে কি শুনানীর তারিখ জানতে পারবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 142,
+      "question": "আমার নামজারি মঞ্জুর হয়েছে খতিয়ান প্রিন্ট কপি নিজে কি নিতে পারবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 143,
+      "question": "আমি বিদেশে থাকি, প্রতিনিধি কি নামজারির আবেদন করতে পারবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 144,
+      "question": "আমি থাকিনা প্রতিনিধি দিয়ে নামজারি করালে কি তার নামে জমি হয়ে যাবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 145,
+      "question": "আমাদের বাবা মারা গেছেন, এখন সব ওয়ারিশদের নামে নামজারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 146,
+      "question": "অনলাইনে নামজারি করেছি মঞ্জুর হলে খতিয়ান কি আমি উঠাতে পারবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 147,
+      "question": "নামজারি করতে দলিল আর এনআইডি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 148,
+      "question": "ওয়ারিশ হিসেবে নামজারি করতে কিকি কাগজপত্র লাগে?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 149,
+      "question": "নিবন্ধন করতে দলিল দরকার কি?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 150,
+      "question": "নামজারি আবেদন করেছি বেশ কিছুদিন কি অবস্থায় আছে জানবো কিভাবে?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 151,
+      "question": "ভূমি অফিসে গিয়ে শুনানীর তথ্য নিতে হবে কি?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 152,
+      "question": "আমার পিতা মারা গেছেন আমি তো জমি খাই, নামজারি করা যাবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 153,
+      "question": "নামজারি আবেদন করতে কত টাকা লাগে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 154,
+      "question": "অংশে ভুল হয়েছে, এখন কী করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 155,
+      "question": "নামজারি করতে সরকারি ফি কত?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 156,
+      "question": "আমি বিদেশে আছি আমার ভাই বা আত্মীয় নামজারির আবেদন করতে পারে কিনা?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 157,
+      "question": "নামজারি মঞ্জুর হয়েছে খতিয়ান আমি কি উঠাতে পারবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 158,
+      "question": "শুনানীর নোটিশ কিভাবে পোস্ট অফিস থেকে পাবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 159,
+      "question": "খারিজের আবেদন কিভাবে করবো?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 160,
+      "question": "নামজারি মামলা নামঞ্জুর হয়েছে এক্ষেত্রে কোন আদালতে যাবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 161,
+      "question": "নামজারি কখন করা হবে?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 162,
+      "question": "আমার পিতা মারা গেছেন আমি জমি খাই নামজারি করা লাগবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 163,
+      "question": "শুনানীতে কি আবেদনকারী নিজে উপস্থিত থাকতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 164,
+      "question": "এসি (ল্যান্ড) শুনানী না নিয়ে নামঞ্জুর করেছেন এরপর কোন আদালতে যাবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 165,
+      "question": "নামজারি মামলার অবস্থা কোথায় জানার উপায় কি?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 166,
+      "question": "আমাদের বাবা মারা গেছেন এখন আমার নামে নাম জারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 167,
+      "question": "নামজারি করতে দলিলের ফটোকপি আর এনআইডির ফটোকপি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 168,
+      "question": "অফিসে না গিয়ে মোবাইলে জানার উপায় আছে?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_application_procedure",
+      "correct": false
+    },
+    {
+      "id": 169,
+      "question": "নামজারির আবেদন করতে কত খরচ হবে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 170,
+      "question": "নামজারি মঞ্জুর হয়েছে খতিয়ান কপি নিজে কিভাবে নিতে পারি?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 171,
+      "question": "এসি (ল্যান্ড) শুনানী না নিয়ে নামঞ্জুর করেছেন তাহলে এখন কি করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 172,
+      "question": "নামজারি আবেদন করেছি দীর্ঘদিন কি অবস্থায় আছে জানবো কিভাবে?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 173,
+      "question": "নামজারি মামলা না মঞ্জুর হলে পরবর্তী করণীয় কী?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 174,
+      "question": "নামজারি করতে দলিল ছাড়া আর কি লাগে?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 175,
+      "question": "শুনানীতে সব আবেদনকারীকে যেতে হবে নাতো?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 176,
+      "question": "অনলাইনে খারিজ করতে চাই, কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 177,
+      "question": "নামজারি আবেদন করতে কত খরচ হবে?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 178,
+      "question": "নামজারি নামঞ্জুর হলে কোন আদালতে যাবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 179,
+      "question": "আমার বাবা মারা গেছেন, এখন সব ওয়ারিশের নামে নাম জারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 180,
+      "question": "অনলাইনে মিউটেশন সেবা কিভাবে গ্রহণ করতে পারি?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 181,
+      "question": "আমি নিজে নামজারি করতে কি ভূমি অফিসে যাওয়া লাগবে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 182,
+      "question": "অনলাইনে খারিজ সেবা কিভাবে পেতে পারি?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 183,
+      "question": "ওয়ারিশ মতে নাম জারি করতে কিকি কাগজ লাঘে?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 184,
+      "question": "নামজারির আসল ফি কত নির্ধারিত?",
+      "actual_label": "namjari_fee",
+      "predicted_label": "namjari_fee",
+      "correct": true
+    },
+    {
+      "id": 185,
+      "question": "পিতা মারা যাওয়ার পর কি আমাদের নামে জমি নামজারি করাতে হবে?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_eligibility",
+      "correct": false
+    },
+    {
+      "id": 186,
+      "question": "নামজারি সেবা নিতে হলে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 187,
+      "question": "আবেদন দেওয়ার পরে ইউনিয়ন অফিসে যোগাযোগ করতে হবে?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 188,
+      "question": "নামজারি মামলা নামঞ্জুর হয়েছে তাহলে কি করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 189,
+      "question": "অনলাইনে মিউটেশন সেবা নিতে হলে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 190,
+      "question": "ওয়ারিশ মতে নাম জারি করতে কি কি কাগজ লাঘে?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 191,
+      "question": "প্রতিনিধি দিয়ে নামজারি করালে কি জমি তার নামে হয়ে যাবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 192,
+      "question": "নামজারির আবেদন দেওয়ার পর শুনানীর সময়টা কিভাবে জানবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 193,
+      "question": "নামজারির আবেদন জমা দেওয়ার পর শুনানীর জন্য কিভাবে জানবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 194,
+      "question": "নামজারির জন্য কোন কোন ডকুমেন্ট দরকার?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 195,
+      "question": "আমি হচ্ছে প্রবাসী আরকি এখন আমার খারিজ টা দেশে কি অন্য কেউ করতে পারবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 196,
+      "question": "নামজারি মঞ্জুর হলে খতিয়ান কপি কোথায় পাবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 197,
+      "question": "আমি না থাকলে প্রতিনিধি দিয়ে কি আবেদন করা সম্ভব?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 198,
+      "question": "আমি কি নামজারি আবেদন করতে ভূমি অফিসে যাওয়া লাগে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 199,
+      "question": "শুনানির খবর কি হাতে হাতে দেয় নাকি মোবাইলে জানায়?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 200,
+      "question": "খারিজ সেবা গ্রহণ করতে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 201,
+      "question": "আমি নিজে কি নামজারি করতে পারব?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 202,
+      "question": "খতিয়ান জমির পরিমাণ ভুল কিভাবে সংশোধন করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 203,
+      "question": "কাগজপত্রে আপলোড আছে তবে কেন কাগজাদি দেখাতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 204,
+      "question": "মিউটেশন করতে চাই, কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 205,
+      "question": "খতিয়ানে জমির একর/শতক ঠিক নেই — কী করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 206,
+      "question": "নামজারির খতিয়ানে যদি কিছু তথ্য ভুল আসে, তখন কোথায় যোগাযোগ করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 207,
+      "question": "নামজারি মামলা নামঞ্জুর হলে এখনই কি করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 208,
+      "question": "নিবন্ধন করতে কি জন্মনিবন্ধন লাগে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 209,
+      "question": "ডেভেলপার থেকে জমি পেলে কি নামজারি আবশ্যক?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 210,
+      "question": "শুনানীতে আবেদনকারীকে-ই যেতে হবে নাতো?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 211,
+      "question": "আমি খারিজের আবেদন করেছিলাম, এখন দেখি নামঞ্জুর হয়ে গেছে — এখন কি করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 212,
+      "question": "নামজারি মামলার প্রগ্রেস বা স্ট্যাটাস কিভাবে দেখবো?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 213,
+      "question": "আবেদনকারী ছাড়া অন্য কেউ শুনানীতে কাগজাদি নিয়ে গেলে অসুবিধা আছে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 214,
+      "question": "আমি দলিল করে জমি পাইছি, নামজারি করতে হবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 215,
+      "question": "এলাকায় না থাকলে অন্য কেউ আবেদন করতে পারবে কি?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 216,
+      "question": "খতিয়ান জমির পরিমাণ ভুল সংশোধন কিভাবে করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 217,
+      "question": "নামজারির জন্য নিবন্ধন করতে দলিল দরকার কি?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 218,
+      "question": "নোটিশ ছাড়া কি শুনানী হবে না?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 219,
+      "question": "নামজারি মামলা দীর্ঘদিন পরে কি অবস্থায় আছে কিভাবে জানবো?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 220,
+      "question": "নামজারি করতে কি ভূমি অফিসে যাওয়া লাগে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 221,
+      "question": "নিবন্ধন করতে কি নিজের এনআইডি লাগে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 222,
+      "question": "নামজারির জন্য অনলাইন থেকে কি আবেদন করা যায়?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_process",
+      "correct": false
+    },
+    {
+      "id": 223,
+      "question": "প্রতিনিধি দিয়ে নামজারি করলে জমির মালিকানা কি তার হবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 224,
+      "question": "শুনানীর জন্য সমস্ত কাগজ কি নিয়ে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 225,
+      "question": "নামজারি করতে প্রতিনিধি পক্ষে কি দলিল প্রয়োজন?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 226,
+      "question": "শুনানীতে আবেদনকারীদেরকে যেতে হবে নাতো?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 227,
+      "question": "অনলাইনে নামজারি করেছি আমার খতিয়ানের কপি কোথায় পাবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 228,
+      "question": "শুনানীর জন্য কাগজপত্র কি নিয়ে যেতে হবে?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 229,
+      "question": "নিবন্ধন করতে নিজের মোবাইল থাকতে হবে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 230,
+      "question": "এসি (ল্যান্ড) শুনানী না নিয়ে নামঞ্জুর করেছেন?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 231,
+      "question": "খতিয়ানের হার্ড কপি আমি নিজে তুলতে পারবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": false
+    },
+    {
+      "id": 232,
+      "question": "ওয়ারিশমতে নামজারি, খারিজ, মিউটেশন করতে আপোষ বন্টননামা লাগে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 233,
+      "question": "আমি কি আমার এলাকার পোস্ট অফিসে গিয়ে জিজ্ঞেস করবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 234,
+      "question": "নামজারি কখন করা লাগবে?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 235,
+      "question": "নামজারি মামলার স্ট্যাটাস জানার উপায় কি?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 236,
+      "question": "আমার বাবা মারা গেছেন, এখন ওয়ারিশদের নামে নাম জারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 237,
+      "question": "এসি ল্যান্ড শুনানী না করেই মামলাটি বাতিল করেছেন — এখন কী করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 238,
+      "question": "বণ্টননামা ছাড়া কি নামজারি হবে না?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 239,
+      "question": "নামজারি করতে দলিলের ফটোকপি আর ছবি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 240,
+      "question": "আমি হচ্ছে নামজারি করতে চাচ্ছিলাম এখন কারো সাহায্য নিতে হবে নাকি নিজেই করতে পারবো?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 241,
+      "question": "খতিয়ানে ভুল সংশোধনের জন্য কার কাছে যেতে হয়?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 242,
+      "question": "এসি (ল্যান্ড) শুনানী না নিয়ে নামঞ্জুর করেছেন এক্ষেত্রে কি করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 243,
+      "question": "নামজারি করতে অন্যের সাহায্য নেওয়া যাবে কি?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 244,
+      "question": "বারবার আবেদন করেও নামঞ্জুর হচ্ছে, কোথায় সমস্যাটা হচ্ছে বুঝছি না — কার সাথে কথা বলবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 245,
+      "question": "আমি বিদেশে থাকি আমার ভাই বা আত্মীয় কি নামজারি আবেদন করতে পারবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 246,
+      "question": "কার অফিসে বা কোন কর্মকর্তা মামলাটি আছে তা কিভাবে জানি?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 247,
+      "question": "কোর্ট বা অফিসে না গিয়ে অনলাইনে কিভাবে বুঝবো মামলাটা কোন অবস্থায়?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_status_check",
+      "correct": false
+    },
+    {
+      "id": 248,
+      "question": "নামজারি আবেদন করেছি অনেকদিন যাবত কি অবস্থায় আছে জানবো কিভাবে?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 249,
+      "question": "মোবাইল দিয়ে শুনানীর আপডেট জানার উপায় আছে?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 250,
+      "question": "এসি (ল্যান্ড) শুনানী না নিয়ে নামঞ্জুর করেছেন এখন কোন আদালতে যাবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 251,
+      "question": "নামজারি আবেদন করেছি অনেকদিন কি আবস্থায় আছে জানবো কিভাবে?",
+      "actual_label": "namjari_status_check",
+      "predicted_label": "namjari_status_check",
+      "correct": true
+    },
+    {
+      "id": 252,
+      "question": "আবেদন করার পর অফিসে যাওয়া লাগে কি?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 253,
+      "question": "শুনানীর নোটিশটা কিভাবে পাবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 254,
+      "question": "খতিয়ানে ভুল সংশোধন করতে কি কি কাগজ লাগে?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 255,
+      "question": "অনলাইনে নামজারি করেছিলাম, এখন খতিয়ান কপি কোথা থেকে নিতে হবে?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": false
+    },
+    {
+      "id": 256,
+      "question": "আমি বিদেশে থাকি প্রতিনিধি দিয়ে নামজারি করালে কি তার নামে জমি হয়ে যাবে?",
+      "actual_label": "namjari_by_representative",
+      "predicted_label": "namjari_by_representative",
+      "correct": true
+    },
+    {
+      "id": 257,
+      "question": "খতিয়ানে নাম ভুল লেখা আছে সংশোধন কিভাবে করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 258,
+      "question": "নিবন্ধন করতে কি অবশ্যই নিজের ফোন নম্বর লাগবে?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 259,
+      "question": "নামজারির শুনানীর জন্য মোবাইল করে খোজ নেব কিনা?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 260,
+      "question": "নামজারির আবেদন দাখিলের পর শুনানীর দিন কিভাবে জানবো?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 261,
+      "question": "নামজারি মঞ্জুর হলে খতিয়ান কপি নিজে কোথায় পাবো?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 262,
+      "question": "খতিয়ান নাম ভুল সংশোধন কিভাবে করবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 263,
+      "question": "নামজারি করতে ভূমি অফিসে যেতে হবে কি?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 264,
+      "question": "খারিজ আবেদন কোথায় করতে হবে?",
+      "actual_label": "namjari_application_procedure",
+      "predicted_label": "namjari_application_procedure",
+      "correct": true
+    },
+    {
+      "id": 265,
+      "question": "নামজারি আবেদন নামঞ্জুর হয়েছে তাহলে কি করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 266,
+      "question": "অনলাইনে নামজারি মঞ্জুর হলে খতিয়ানের প্রিন্ট কপি কিভাবে পেতে পারি?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 267,
+      "question": "খতিয়ানে জমির পরিমাণ ভুল আছে সংশোধন করতে কত টাকা লাগে?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 268,
+      "question": "দলিলদাতা রেকর্ডধারী না হলে নামজারির সমস্যা হবে কি?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 269,
+      "question": "উত্তরাধিকারসূত্রে নামজারিতে কি বণ্টননামা দিতে হবে?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 270,
+      "question": "খতিয়ানে জমির পরিমাণ ভুল লেখা সংশোধন করতে কত টাকা লাগে?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 271,
+      "question": "নামজারির খতিয়ান কি অনলাইন প্রোফাইলে সংরক্ষিত থাকে?",
+      "actual_label": "namjari_khatian_copy",
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
+    },
+    {
+      "id": 272,
+      "question": "দলিলের ফটোকপি দিয়ে নামজারি হবে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 273,
+      "question": "আমার কাছে নামজারিের মূল দলিল নাই, ফটোকপি আছে, নামজারির জন্য মূল দলিল দরকার না ফটোকপি চলবে?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 274,
+      "question": "খারিজ করতে হলে কি করতে হবে?",
+      "actual_label": "namjari_process",
+      "predicted_label": "namjari_process",
+      "correct": true
+    },
+    {
+      "id": 275,
+      "question": "পোস্ট অফিসে শুনানীর চিঠি আসে কি?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 276,
+      "question": "নামজারির জন্য নিবন্ধন করতে কি দলিল দরকার?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    },
+    {
+      "id": 277,
+      "question": "নামজারি তো হয়েছে, কিন্তু খতিয়ানে একাধিক জায়গায় ভুল আছে, সব কিভাবে ঠিক করাতে পারবো?",
+      "actual_label": "namjari_khatian_correction",
+      "predicted_label": "namjari_khatian_correction",
+      "correct": true
+    },
+    {
+      "id": 278,
+      "question": "শুনানীর নোটিশ হাতে পেতে মোবাইল করে খোজ নেব কিনা?",
+      "actual_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
+    },
+    {
+      "id": 279,
+      "question": "শুনানীর জন্য কি কি কাগজপত্র নিয়ে যাবো?",
+      "actual_label": "namjari_hearing_documents",
+      "predicted_label": "namjari_hearing_documents",
+      "correct": true
+    },
+    {
+      "id": 280,
+      "question": "আমি জমি কিনেছি নামজারি করা যাবে কি?",
+      "actual_label": "namjari_eligibility",
+      "predicted_label": "namjari_eligibility",
+      "correct": true
+    },
+    {
+      "id": 281,
+      "question": "নামজারি করতে এনআইডির ফটোকপি আর ছবির ফটোকপি লাগে কিনা?",
+      "actual_label": "namjari_required_documents",
+      "predicted_label": "namjari_required_documents",
+      "correct": true
+    },
+    {
+      "id": 282,
+      "question": "আমাদের বাবা মারা গেছেন, এখন আমাদের নামে নাম জারি করতে হবে কি?",
+      "actual_label": "namjari_inheritance_documents",
+      "predicted_label": "namjari_inheritance_documents",
+      "correct": true
+    },
+    {
+      "id": 283,
+      "question": "নামজারি আবেদন নামঞ্জুর হলে কি করবো?",
+      "actual_label": "namjari_rejected_appeal",
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
+    },
+    {
+      "id": 284,
+      "question": "মোবাইল ছাড়াও কি নিবন্ধন করা যায়?",
+      "actual_label": "namjari_registration",
+      "predicted_label": "namjari_registration",
+      "correct": true
+    }
+  ]
+}
