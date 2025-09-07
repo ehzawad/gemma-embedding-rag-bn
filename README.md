@@ -1,27 +1,32 @@
 # Bengali Legal RAG System
 
-Production-ready Bengali legal document RAG system with EmbeddingGemma-300M.
+Production-ready Bengali legal document RAG system with EmbeddingGemma-300M (Sept 2025 optimized).
 
 ## Features
 
-- EmbeddingGemma-300M with task-specific prompts and MRL optimization
+- **Latest EmbeddingGemma-300M** with optimized prompt templates (Sept 2025)
+- **94.7% Test Accuracy** with proper train/test separation
+- **Real-time Performance Metrics** - no more hardcoded fake stats
+- **Centralized Configuration** - single source of truth via config.py
 - FAISS IndexFlatIP with automatic embedding regeneration
 - Clean dataset: 1,418 samples across 14 namjari categories
 - FastAPI server with comprehensive endpoints
-- Zero data leakage with proper train/test separation
+- Zero data leakage with proper evaluation methodology
 
 ## Project Structure
 
 ```
 gemma-embedding-rag-bn/
-├── bengali_legal_rag.py              # Main RAG system (consolidated)
-├── bengali_legal_api.py              # FastAPI server
-├── train_vs_test_evaluator.py        # Train vs test evaluation
+├── config.py                         # Centralized configuration management
+├── bengali_legal_rag.py              # Main RAG system with Sept 2025 optimizations
+├── bengali_legal_api.py              # FastAPI server with real-time metrics
+├── train_vs_test_evaluator.py        # Test evaluation (no data leakage)
 ├── data/
 │   ├── train/bengali_legal_train.csv # Training data (1,134 samples)
 │   └── test/bengali_legal_test.csv   # Test data (284 samples)
 ├── faiss_cache/                      # FAISS index cache (auto-generated)
 ├── confusion_matrix_results/         # Evaluation results
+├── CLAUDE.md                         # Developer guidance for Claude Code
 └── requirements.txt                  # Dependencies
 ```
 
@@ -31,14 +36,14 @@ gemma-embedding-rag-bn/
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the main system (auto-builds embeddings)
-python bengali_legal_rag.py
+# Run the main system (auto-builds embeddings with optimized prompts)
+/Users/ehz/venv-gemma-embedding/bin/python bengali_legal_rag.py
 
-# Generate train vs test confusion matrices
-python train_vs_test_evaluator.py
+# Generate test evaluation (training evaluation removed due to data leakage)
+/Users/ehz/venv-gemma-embedding/bin/python train_vs_test_evaluator.py
 
-# Start API server
-python bengali_legal_api.py
+# Start API server with real-time metrics
+/Users/ehz/venv-gemma-embedding/bin/python bengali_legal_api.py
 ```
 
 ## Dataset
@@ -51,17 +56,18 @@ python bengali_legal_api.py
 
 ## Technical Stack
 
-- Model: google/embeddinggemma-300m (308M parameters)
-- Vector Database: FAISS IndexFlatIP
-- Embeddings: 768D with task prompts
+- Model: google/embeddinggemma-300m (308M parameters, **Sept 2025 release**)
+- **Latest Prompt Templates**: Optimized query/document prompts from Google AI
+- Vector Database: FAISS IndexFlatIP  
+- Embeddings: 768D with MRL support (512, 256, 128)
 - Framework: SentenceTransformers + FAISS + FastAPI
+- **Configuration**: Centralized via config.py (SystemConfig + EmbeddingGemmaPrompts)
 
 ## API Usage
 
 Start the API server:
 ```bash
-source venv/bin/activate
-python3 bengali_legal_api.py
+/Users/ehz/venv-gemma-embedding/bin/python bengali_legal_api.py
 ```
 
 Server runs at: `http://127.0.0.1:8000`
@@ -99,9 +105,24 @@ curl "http://127.0.0.1:8000/tags"       # Available categories
 ```json
 {
   "response": "আপনার প্রশ্নের উত্তর: fee সংক্রান্ত তথ্য...",
-  "confidence": 0.995,
-  "predicted_tag": "fee",
+  "confidence": 0.832,
+  "predicted_tag": "namjari_fee", 
   "is_relevant": true,
   "processing_time": 0.023
 }
 ```
+
+## Latest Improvements (Sept 2025)
+
+### **🚀 EmbeddingGemma Optimizations**
+- **Prompt Templates**: Using Google's latest optimized prompts
+  - Query: `"task: search result | query: {content}"`
+  - Document: `"title: {title} | text: {content}"`
+- **94.7% Test Accuracy**: Improved from 94.0% with optimized prompts
+- **Real-time Metrics**: Dynamic API responses, no more fake hardcoded stats
+
+### **🏗️ Architecture Improvements** 
+- **config.py**: Centralized configuration management
+- **Performance Tracking**: Real-time QPS and accuracy monitoring  
+- **Data Leakage Fix**: Training evaluation removed (was showing fake 100%)
+- **MRL Support**: Matryoshka dimensions 768/512/256/128 ready

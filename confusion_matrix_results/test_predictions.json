@@ -1,6 +1,6 @@
 {
   "evaluation_summary": {
-    "test_accuracy": 0.9401408450704225,
+    "test_accuracy": 0.9471830985915493,
     "test_samples": 284,
     "categories": 14,
     "note": "Training accuracy not reported due to data leakage (100% due to exact matching)"
@@ -143,8 +143,8 @@
       "id": 20,
       "question": "খতিয়ান আমি নিজে কি অফিস থেকে নিতে পারবো?",
       "actual_label": "namjari_khatian_copy",
-      "predicted_label": "namjari_application_procedure",
-      "correct": false
+      "predicted_label": "namjari_khatian_copy",
+      "correct": true
     },
     {
       "id": 21,
@@ -276,8 +276,8 @@
       "id": 39,
       "question": "আবেদন দেওয়ার পরেও নোটিশ আসেনি, এখন কী করবো?",
       "actual_label": "namjari_status_check",
-      "predicted_label": "namjari_status_check",
-      "correct": true
+      "predicted_label": "namjari_hearing_notification",
+      "correct": false
     },
     {
       "id": 40,
@@ -402,7 +402,7 @@
       "id": 57,
       "question": "আমি জমি খারিজ করাতে চাচ্ছিলাম এটার জন্য কি কোন টাকা পয়সা লাগবে?",
       "actual_label": "namjari_fee",
-      "predicted_label": "namjari_required_documents",
+      "predicted_label": "namjari_khatian_correction",
       "correct": false
     },
     {
@@ -738,8 +738,8 @@
       "id": 105,
       "question": "কাগজ ঠিক থাকার পরেও নামঞ্জুর হলে কোথায় অভিযোগ করবো?",
       "actual_label": "namjari_rejected_appeal",
-      "predicted_label": "namjari_khatian_correction",
-      "correct": false
+      "predicted_label": "namjari_rejected_appeal",
+      "correct": true
     },
     {
       "id": 106,
@@ -815,7 +815,7 @@
       "id": 116,
       "question": "মেসেজ ছাড়া নামজারির তথ্য কিভাবে বের করবো?",
       "actual_label": "namjari_status_check",
-      "predicted_label": "namjari_hearing_notification",
+      "predicted_label": "namjari_rejected_appeal",
       "correct": false
     },
     {
@@ -1179,8 +1179,8 @@
       "id": 168,
       "question": "অফিসে না গিয়ে মোবাইলে জানার উপায় আছে?",
       "actual_label": "namjari_hearing_notification",
-      "predicted_label": "namjari_application_procedure",
-      "correct": false
+      "predicted_label": "namjari_hearing_notification",
+      "correct": true
     },
     {
       "id": 169,
