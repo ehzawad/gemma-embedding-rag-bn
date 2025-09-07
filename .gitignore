@@ -59,9 +59,9 @@ Thumbs.db
 *.temp
 .cache/
 
-# Model files (optional - uncomment if you don't want to track large model files)
-# *.faiss
-# *.pkl
+# Model files (large binary files should not be tracked)
+*.faiss
+*.pkl
 
 # Results (optional - uncomment if you don't want to track results)
 # confusion_matrix_results/
