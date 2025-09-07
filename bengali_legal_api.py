@@ -14,6 +14,10 @@ import random
 import csv
 from typing import List
 from pathlib import Path
+import sys
+
+# Add scripts directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent / "scripts"))
 
 # Environment setup
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -24,7 +28,7 @@ from pydantic import BaseModel
 from filelock import FileLock
 import logging
 
-from embeddinggemma_rag import EmbeddingGemmaRAG
+from enhanced_gemma_rag import EnhancedEmbeddingGemmaRAG
 
 # Logging setup
 logging.basicConfig(level=logging.INFO)
@@ -35,8 +39,13 @@ app = FastAPI(title="Bengali Legal Bot API", description="EmbeddingGemma-powered
 
 # RAG system initialization
 logger.info("Initializing Bengali Legal RAG system...")
-rag = EmbeddingGemmaRAG(confidence_threshold=0.5)
-logger.info("✅ RAG system ready!")
+rag = EnhancedEmbeddingGemmaRAG(
+    data_dir="data/production_bengali_legal_dataset",
+    confidence_threshold=0.5,
+    embedding_dim=768,
+    use_task_prompts=True
+)
+logger.info(" RAG system ready!")
 
 # Pydantic models
 class RequestBody(BaseModel):
@@ -303,13 +312,13 @@ def get_available_tags():
 if __name__ == "__main__":
     import uvicorn
     
-    print("🚀 Starting Bengali Legal API with EmbeddingGemma")
+    print(" Starting Bengali Legal API with EmbeddingGemma")
     print("=" * 50)
-    print(f"📊 Model: google/embeddinggemma-300m")
-    print(f"🎯 Validation Accuracy: 76.4%")
-    print(f"✅ Confident Accuracy: 85.3%")
-    print(f"📋 Training Samples: {len(rag.questions)}")
-    print(f"🔍 FAISS Vectors: {rag.index.ntotal}")
+    print(f" Model: google/embeddinggemma-300m")
+    print(f" Validation Accuracy: 76.4%")
+    print(f" Confident Accuracy: 85.3%")
+    print(f" Training Samples: {len(rag.questions)}")
+    print(f" FAISS Vectors: {rag.index.ntotal}")
     print("=" * 50)
     print(f"API will be available at: http://127.0.0.1:8000")
     print(f"Docs available at: http://127.0.0.1:8000/docs")

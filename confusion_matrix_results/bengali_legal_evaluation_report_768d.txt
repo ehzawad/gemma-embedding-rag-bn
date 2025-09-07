@@ -1,0 +1,65 @@
+
+Bengali Legal RAG System - Comprehensive Evaluation Report
+=========================================================
+
+SYSTEM CONFIGURATION:
+- Model: EmbeddingGemma-300M (google/embeddinggemma-300m)
+- FAISS Index: IndexFlatIP (Inner Product)
+- Embedding Dimension: 768D
+- Task Prompts: Enabled
+- Confidence Threshold: 0.5
+
+PERFORMANCE METRICS:
+- Overall Accuracy: 96.6%
+- Confident Predictions Accuracy: 96.6%
+- Average Confidence: 0.929
+- Confident Predictions: 1485/1485 (100.0%)
+
+SPEED METRICS:
+- Average Query Time: 0.0000s
+- Queries Per Second: 52.0 QPS
+- Total Evaluation Time: 28.55s
+
+DATASET STATISTICS:
+- Total Samples: 1485
+- Categories: 14
+- Training Samples: 1345
+- Validation Samples: 140
+
+PER-CATEGORY CONFIDENCE:
+- application_procedure: 0.942 ± 0.028
+- by_representative   : 0.941 ± 0.029
+- eligibility         : 0.936 ± 0.044
+- fee                 : 0.915 ± 0.032
+- hearing_documents   : 0.935 ± 0.035
+- hearing_notification: 0.928 ± 0.020
+- inheritance_documents: 0.935 ± 0.040
+- khatian_copy        : 0.926 ± 0.033
+- khatian_correction  : 0.931 ± 0.033
+- process             : 0.930 ± 0.026
+- registration        : 0.920 ± 0.033
+- rejected_appeal     : 0.924 ± 0.035
+- required_documents  : 0.917 ± 0.027
+- status_check        : 0.924 ± 0.028
+
+CLASSIFICATION REPORT:
+                       precision    recall  f1-score   support
+
+application_procedure      0.941     0.905     0.922       105
+    by_representative      0.982     0.974     0.978       115
+          eligibility      0.990     0.981     0.986       105
+                  fee      0.978     0.978     0.978        91
+    hearing_documents      0.982     0.973     0.978       113
+ hearing_notification      0.914     0.992     0.951       128
+inheritance_documents      1.000     0.962     0.981       106
+         khatian_copy      0.950     0.969     0.960        98
+   khatian_correction      0.991     0.973     0.982       111
+              process      0.923     0.955     0.939        88
+         registration      0.970     0.960     0.965       100
+      rejected_appeal      0.983     0.974     0.979       117
+   required_documents      0.958     0.974     0.966       116
+         status_check      0.966     0.935     0.950        92
+
+             accuracy                          0.966      1485
+            macro avg      0.966     0.965     0.965      1485
+         weighted avg      0.966     0.966     0.966      1485
