@@ -81,9 +81,12 @@ class EnhancedEmbeddingGemmaRAG:
         self.val_tags = []
         self.index = None
         
-        # Index cache paths
-        self.index_path = self.data_dir / f"gemma_index_{embedding_dim}d.faiss"
-        self.metadata_path = self.data_dir / f"gemma_metadata_{embedding_dim}d.pkl"
+        # Index cache paths - save to temp directory, not data folder
+        import tempfile
+        cache_dir = Path(tempfile.gettempdir()) / "gemma_rag_cache"
+        cache_dir.mkdir(exist_ok=True)
+        self.index_path = cache_dir / f"gemma_index_{embedding_dim}d.faiss"
+        self.metadata_path = cache_dir / f"gemma_metadata_{embedding_dim}d.pkl"
         
         # Load and build index
         self._load_data()
