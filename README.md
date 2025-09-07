@@ -1,57 +1,53 @@
 # Bengali Legal RAG System
 
-Production-ready Bengali legal document RAG system with 96.6% accuracy.
+Production-ready Bengali legal document RAG system with EmbeddingGemma-300M.
 
 ## Features
 
-- High accuracy: 96.6% on Bengali legal queries
-- EmbeddingGemma-300M with task-specific prompts
-- FAISS IndexFlatIP with CUDA acceleration (52 QPS)
-- Production dataset: 1,485 samples across 14 categories
+- EmbeddingGemma-300M with task-specific prompts and MRL optimization
+- FAISS IndexFlatIP with automatic embedding regeneration
+- Clean dataset: 1,418 samples across 14 namjari categories
 - FastAPI server with comprehensive endpoints
+- Zero data leakage with proper train/test separation
 
 ## Project Structure
 
 ```
 gemma-embedding-rag-bn/
-├── enhanced_gemma_rag.py             # Main RAG system
+├── bengali_legal_rag.py              # Main RAG system (consolidated)
 ├── bengali_legal_api.py              # FastAPI server
-├── gemma_confusion_matrix_generator.py # Evaluation
-├── data/production_bengali_legal_dataset/ # Dataset + FAISS indices
+├── train_vs_test_evaluator.py        # Train vs test evaluation
+├── data/
+│   ├── train/bengali_legal_train.csv # Training data (1,134 samples)
+│   └── test/bengali_legal_test.csv   # Test data (284 samples)
+├── faiss_cache/                      # FAISS index cache (auto-generated)
 ├── confusion_matrix_results/         # Evaluation results
-├── venv/                             # Virtual environment
 └── requirements.txt                  # Dependencies
 ```
 
 ## Quick Start
 
 ```bash
-# Activate virtual environment
-source venv/bin/activate
+# Install dependencies
+pip install -r requirements.txt
 
-# Run the main system
-python3 enhanced_gemma_rag.py
+# Run the main system (auto-builds embeddings)
+python bengali_legal_rag.py
+
+# Generate train vs test confusion matrices
+python train_vs_test_evaluator.py
 
 # Start API server
-python3 bengali_legal_api.py
-
-# Generate confusion matrix
-python3 gemma_confusion_matrix_generator.py
+python bengali_legal_api.py
 ```
-
-## Performance
-
-- Overall Accuracy: 97.0%
-- Average Confidence: 0.990
-- Query Speed: 51.0 QPS
-- Confident Predictions: 100% (1485/1485)
 
 ## Dataset
 
-- Total Samples: 1,485 Bengali legal questions
-- Categories: 14 legal document types (namjari-related)
-- Training Split: 1,345 samples
-- Validation Split: 140 samples
+- **Total Samples**: 1,418 Bengali legal questions
+- **Categories**: 14 namjari-related legal document types
+- **Training Split**: 1,134 samples (80%)
+- **Test Split**: 284 samples (20%)
+- **Split Method**: Stratified with zero overlap (data leakage eliminated)
 
 ## Technical Stack
 

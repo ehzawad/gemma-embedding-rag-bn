@@ -60,8 +60,11 @@ Thumbs.db
 .cache/
 
 # Model files (large binary files should not be tracked)
-*.faiss
-*.pkl
+# *.faiss
+# *.pkl
+
+# FAISS cache directory (keep local but ignore in git)
+faiss_cache/
 
 # Results (optional - uncomment if you don't want to track results)
 # confusion_matrix_results/

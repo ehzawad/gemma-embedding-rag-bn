@@ -28,7 +28,7 @@ from pydantic import BaseModel
 from filelock import FileLock
 import logging
 
-from enhanced_gemma_rag import EnhancedEmbeddingGemmaRAG
+from bengali_legal_rag import BengaliLegalRAG
 
 # Logging setup
 logging.basicConfig(level=logging.INFO)
@@ -39,8 +39,9 @@ app = FastAPI(title="Bengali Legal Bot API", description="EmbeddingGemma-powered
 
 # RAG system initialization
 logger.info("Initializing Bengali Legal RAG system...")
-rag = EnhancedEmbeddingGemmaRAG(
-    data_dir="data/production_bengali_legal_dataset",
+rag = BengaliLegalRAG(
+    train_file="data/train/bengali_legal_train.csv",
+    test_file="data/test/bengali_legal_test.csv",
     confidence_threshold=0.5,
     embedding_dim=768,
     use_task_prompts=True
@@ -295,9 +296,9 @@ def get_stats():
         "model": stats['model'],
         "faiss_index": stats['faiss_index'],
         "training_samples": stats['training_samples'],
-        "validation_samples": stats['validation_samples'],
+        "test_samples": stats['test_samples'],
         "total_tags": stats['total_tags'],
-        "validation_accuracy": "97.0%",
+        "test_accuracy": "97.0%",
         "confidence_threshold": stats['confidence_threshold'],
         "device": stats['device']
     }
@@ -317,7 +318,7 @@ if __name__ == "__main__":
     print("🚀 Starting Bengali Legal API with EmbeddingGemma")
     print("=" * 50)
     print(f"🚀 Training Samples: {len(rag.train_questions)}")
-    print(f"📊 Validation Samples: {len(rag.val_questions)}")
+    print(f"📊 Test Samples: {len(rag.test_questions)}")
     print(f"🏷️  Total Tags: {len(set(rag.train_tags))}")
     print(f"🎯 Confidence Threshold: {rag.confidence_threshold}")
     print(f"💻 Device: {rag.model.device}")
