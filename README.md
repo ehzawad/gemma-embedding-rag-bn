@@ -41,9 +41,9 @@ python3 gemma_confusion_matrix_generator.py
 
 ## Performance
 
-- Overall Accuracy: 96.6%
-- Average Confidence: 0.929
-- Query Speed: 52.0 QPS
+- Overall Accuracy: 97.0%
+- Average Confidence: 0.990
+- Query Speed: 51.0 QPS
 - Confident Predictions: 100% (1485/1485)
 
 ## Dataset
@@ -60,11 +60,52 @@ python3 gemma_confusion_matrix_generator.py
 - Embeddings: 768D with task prompts
 - Framework: SentenceTransformers + FAISS + FastAPI
 
-## API Endpoints
+## API Usage
 
-- `GET /` - System information
-- `GET /health` - Health check
-- `POST /classify` - Simple classification
-- `POST /land_em_bot/` - Main chatbot endpoint
-- `GET /stats` - System statistics
-- `GET /tags` - Available categories
+Start the API server:
+```bash
+source venv/bin/activate
+python3 bengali_legal_api.py
+```
+
+Server runs at: `http://127.0.0.1:8000`
+API Documentation: `http://127.0.0.1:8000/docs`
+
+### Main Chatbot Endpoint
+```bash
+curl -X POST "http://127.0.0.1:8000/land_em_bot/" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "question": "আমি নামজারি করতে কত টাকা লাগবে?",
+    "messages": "[]",
+    "chat_id": "user123"
+  }'
+```
+
+### Simple Classification
+```bash
+curl -X POST "http://127.0.0.1:8000/classify" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "question": "নামজারির জন্য কি কি কাগজপত্র লাগে?"
+  }'
+```
+
+### System Information
+```bash
+curl "http://127.0.0.1:8000/"           # Basic info
+curl "http://127.0.0.1:8000/health"     # Health check
+curl "http://127.0.0.1:8000/stats"      # Performance stats
+curl "http://127.0.0.1:8000/tags"       # Available categories
+```
+
+### Response Format
+```json
+{
+  "response": "আপনার প্রশ্নের উত্তর: fee সংক্রান্ত তথ্য...",
+  "confidence": 0.995,
+  "predicted_tag": "fee",
+  "is_relevant": true,
+  "processing_time": 0.023
+}
+```
