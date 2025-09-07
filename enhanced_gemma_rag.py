@@ -47,7 +47,18 @@ class EnhancedEmbeddingGemmaRAG:
         """
         logger.info(f"🚀 Loading Enhanced EmbeddingGemma-300M (dim={embedding_dim})...")
         
-        self.model = SentenceTransformer("google/embeddinggemma-300m")
+        # Use official MRL with truncate_dim and dot product similarity
+        if embedding_dim < 768:
+            self.model = SentenceTransformer(
+                "google/embeddinggemma-300m", 
+                truncate_dim=embedding_dim,
+                similarity_fn_name="dot"
+            )
+        else:
+            self.model = SentenceTransformer(
+                "google/embeddinggemma-300m",
+                similarity_fn_name="dot"
+            )
         self.confidence_threshold = confidence_threshold
         self.data_dir = Path(data_dir)
         self.embedding_dim = embedding_dim
@@ -78,19 +89,14 @@ class EnhancedEmbeddingGemmaRAG:
         self._load_data()
         self._load_or_build_index()
     
-    def _apply_task_prompt(self, text: str, task_type: str = "query") -> str:
-        """Apply task-specific prompts as recommended by EmbeddingGemma"""
+    def _get_prompt_name(self, task_type: str = "query") -> str:
+        """Get official EmbeddingGemma prompt name for task type"""
         if not self.use_task_prompts:
-            return text
+            return None
             
-        if task_type == "query":
-            return f"query: {text}"
-        elif task_type == "document":
-            return f"document: {text}"
-        elif task_type == "search":
-            return f"search query: {text}"
-        else:
-            return text
+        # Use official Classification prompt for both queries and documents
+        # as this is a classification task
+        return "Classification"
     
     def _load_data(self):
         """Load training and validation data with enhanced processing"""
@@ -168,31 +174,33 @@ class EnhancedEmbeddingGemmaRAG:
         logger.info(f"✅ Index and metadata saved!")
 
     def _build_enhanced_index(self):
-        """Build enhanced FAISS index with MRL and optimizations"""
-        logger.info("Building enhanced FAISS index with latest optimizations...")
+        """Build enhanced FAISS index with official EmbeddingGemma optimizations"""
+        logger.info("Building enhanced FAISS index with official optimizations...")
         
-        # Apply task prompts to training documents
-        prompted_questions = [
-            self._apply_task_prompt(q, "document") for q in self.train_questions
-        ]
-        
-        # Generate embeddings
+        # Generate embeddings with official Classification prompt
         start_time = time.time()
-        embeddings = self.model.encode(
-            prompted_questions, 
-            batch_size=32, 
-            show_progress_bar=True,
-            convert_to_numpy=True
-        )
+        prompt_name = self._get_prompt_name("document")
+        
+        if prompt_name:
+            embeddings = self.model.encode(
+                self.train_questions, 
+                prompt_name=prompt_name,
+                batch_size=32, 
+                show_progress_bar=True,
+                convert_to_numpy=True,
+                normalize_embeddings=True  # Official recommendation
+            )
+        else:
+            embeddings = self.model.encode(
+                self.train_questions, 
+                batch_size=32, 
+                show_progress_bar=True,
+                convert_to_numpy=True,
+                normalize_embeddings=True
+            )
         embedding_time = time.time() - start_time
         
-        # Apply Matryoshka Representation Learning (MRL) - truncate to desired dimension
-        if self.embedding_dim < 768:
-            logger.info(f"Applying MRL: truncating embeddings to {self.embedding_dim} dimensions")
-            embeddings = embeddings[:, :self.embedding_dim]
-        
-        # Normalize for inner product search (recommended for EmbeddingGemma)
-        embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
+        # No manual truncation needed - handled by truncate_dim in model init
         
         # Build optimized FAISS index
         start_time = time.time()
@@ -207,24 +215,28 @@ class EnhancedEmbeddingGemmaRAG:
         logger.info(f"   - Index build time: {index_time:.2f}s")
     
     def query(self, question: str, k: int = 3) -> Dict:
-        """Enhanced query with task prompts and optimizations"""
-        # Apply task prompt to query
-        prompted_query = self._apply_task_prompt(question, "query")
-        
-        # Generate embedding
+        """Enhanced query with official EmbeddingGemma optimizations"""
+        # Generate embedding with official Classification prompt
         start_time = time.time()
-        query_embedding = self.model.encode(
-            [prompted_query], 
-            show_progress_bar=False,
-            convert_to_numpy=True
-        )
+        prompt_name = self._get_prompt_name("query")
         
-        # Apply MRL if needed
-        if self.embedding_dim < 768:
-            query_embedding = query_embedding[:, :self.embedding_dim]
+        if prompt_name:
+            query_embedding = self.model.encode(
+                [question], 
+                prompt_name=prompt_name,
+                show_progress_bar=False,
+                convert_to_numpy=True,
+                normalize_embeddings=True
+            )
+        else:
+            query_embedding = self.model.encode(
+                [question], 
+                show_progress_bar=False,
+                convert_to_numpy=True,
+                normalize_embeddings=True
+            )
         
-        # Normalize
-        query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=1, keepdims=True)
+        # No manual processing needed - handled by model
         
         # Search
         scores, indices = self.index.search(query_embedding.astype('float32'), k)
