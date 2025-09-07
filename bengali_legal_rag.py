@@ -4,10 +4,9 @@ Bengali Legal RAG System with EmbeddingGemma
 ===========================================
 
 Complete RAG system for Bengali legal intent classification using EmbeddingGemma-300M
-with proper train/test separation and performance optimizations.
+with proper train/test separation and latest optimization features (Sept 2025).
 """
 
-import os
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -17,61 +16,54 @@ import time
 import torch
 import faiss
 import pickle
-import tempfile
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Environment setup
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-os.environ["OMP_NUM_THREADS"] = "1"
+# Import centralized configuration
+from config import config, EmbeddingGemmaPrompts, get_cache_paths
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=getattr(logging, config.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
 class BengaliLegalRAG:
     """Complete Bengali Legal RAG System with EmbeddingGemma optimizations"""
     
     def __init__(self, 
-                 train_file: str = "data/train/bengali_legal_train.csv",
-                 test_file: str = "data/test/bengali_legal_test.csv", 
-                 confidence_threshold: float = 0.5,
-                 model_name: str = "google/embeddinggemma-300m",
-                 embedding_dim: int = 768,
-                 use_task_prompts: bool = True):
+                 train_file: Optional[str] = None,
+                 test_file: Optional[str] = None, 
+                 confidence_threshold: Optional[float] = None,
+                 model_name: Optional[str] = None,
+                 embedding_dim: Optional[int] = None,
+                 use_task_prompts: Optional[bool] = None):
         """
         Initialize Bengali Legal RAG System
         
         Args:
-            train_file: Path to training CSV file
-            test_file: Path to test CSV file
-            confidence_threshold: Minimum confidence for predictions
-            model_name: EmbeddingGemma model name
-            embedding_dim: Embedding dimension (768, 512, 256, or 128 for MRL)
-            use_task_prompts: Whether to use task-specific prompts
+            train_file: Path to training CSV file (default from config)
+            test_file: Path to test CSV file (default from config)
+            confidence_threshold: Minimum confidence for predictions (default from config)
+            model_name: EmbeddingGemma model name (default from config)
+            embedding_dim: Embedding dimension - supports MRL: 768, 512, 256, 128 (default from config)
+            use_task_prompts: Whether to use latest EmbeddingGemma prompt templates (default from config)
         """
-        logger.info(f"🚀 Initializing Bengali Legal RAG System (dim={embedding_dim})...")
+        # Use centralized config with optional overrides
+        self.train_file = Path(train_file or config.TRAIN_FILE)
+        self.test_file = Path(test_file or config.TEST_FILE)
+        self.confidence_threshold = confidence_threshold or config.CONFIDENCE_THRESHOLD
+        self.embedding_dim = embedding_dim or config.EMBEDDING_DIM
+        self.use_task_prompts = use_task_prompts if use_task_prompts is not None else config.USE_TASK_PROMPTS
+        self.model_name = model_name or config.MODEL_NAME
         
-        # Configuration
-        self.train_file = Path(train_file)
-        self.test_file = Path(test_file)
-        self.confidence_threshold = confidence_threshold
-        self.embedding_dim = embedding_dim
-        self.use_task_prompts = use_task_prompts
-        self.model_name = model_name
+        logger.info(f"🚀 Initializing Bengali Legal RAG System (dim={self.embedding_dim})...")
         
         # Initialize EmbeddingGemma model with optimizations
-        logger.info(f"🔧 Loading EmbeddingGemma model (dim: {embedding_dim})...")
+        logger.info(f"🔧 Loading EmbeddingGemma model (dim: {self.embedding_dim})...")
         
         # Suppress progress bars and verbose output
-        import logging
         transformers_logger = logging.getLogger("transformers")
         transformers_logger.setLevel(logging.ERROR)
-        
-        # Suppress sentence-transformers progress bars
-        import os
-        os.environ["TOKENIZERS_PARALLELISM"] = "false"
         
         # Disable tqdm progress bars
         import warnings
@@ -86,14 +78,13 @@ class BengaliLegalRAG:
         
         self.model = SentenceTransformer(
             self.model_name, 
-            trust_remote_code=True,
+            trust_remote_code=config.TRUST_REMOTE_CODE,
             device='cuda' if torch.cuda.is_available() else 'cpu'
         )
         
-        # Validate embedding dimension
-        valid_dims = [768, 512, 256, 128]
-        if embedding_dim not in valid_dims:
-            logger.warning(f"Embedding dim {embedding_dim} not in {valid_dims}, using 768")
+        # Validate embedding dimension (MRL support)
+        if self.embedding_dim not in config.VALID_EMBEDDING_DIMS:
+            logger.warning(f"Embedding dim {self.embedding_dim} not in {config.VALID_EMBEDDING_DIMS}, using 768")
             self.embedding_dim = 768
         
         # Performance optimization
@@ -110,11 +101,10 @@ class BengaliLegalRAG:
         self.test_tags: List[str] = []
         self.index: Optional[faiss.Index] = None
         
-        # Cache paths - store in project directory
-        cache_dir = Path(__file__).parent / "faiss_cache"
-        cache_dir.mkdir(exist_ok=True)
-        self.index_path = cache_dir / f"rag_index_{embedding_dim}d.faiss"
-        self.metadata_path = cache_dir / f"rag_metadata_{embedding_dim}d.pkl"
+        # Cache paths from centralized config
+        cache_paths = get_cache_paths(self.embedding_dim)
+        self.index_path = cache_paths['index']
+        self.metadata_path = cache_paths['metadata']
         
         # Initialize system
         self._load_data()
@@ -122,9 +112,21 @@ class BengaliLegalRAG:
         
         logger.info("✅ Bengali Legal RAG System ready!")
     
-    def _get_prompt_name(self) -> Optional[str]:
-        """Get EmbeddingGemma prompt name for classification task"""
-        return "Classification" if self.use_task_prompts else None
+    def _get_query_prompt(self, content: str) -> Optional[str]:
+        """Get optimized EmbeddingGemma prompt for query embedding (Sept 2025)"""
+        if self.use_task_prompts:
+            return EmbeddingGemmaPrompts.get_query_prompt(content)
+        return content
+    
+    def _get_document_prompt(self, content: str, title: Optional[str] = None) -> Optional[str]:
+        """Get optimized EmbeddingGemma prompt for document embedding (Sept 2025)"""
+        if self.use_task_prompts:
+            return EmbeddingGemmaPrompts.get_document_prompt(content, title)
+        return content
+    
+    def _get_legacy_prompt_name(self) -> Optional[str]:
+        """Legacy prompt method for backward compatibility"""
+        return EmbeddingGemmaPrompts.LEGACY_CLASSIFICATION if self.use_task_prompts else None
     
     def _load_data(self):
         """Load training and test data"""
@@ -182,29 +184,27 @@ class BengaliLegalRAG:
             pickle.dump(metadata, f)
     
     def _build_index(self):
-        """Build FAISS index from training data"""
-        logger.info("🔨 Building FAISS index...")
+        """Build FAISS index from training data using latest EmbeddingGemma optimizations"""
+        logger.info("🔨 Building FAISS index with optimized prompts...")
         
-        prompt_name = self._get_prompt_name()
-        
-        # Generate embeddings
-        if prompt_name:
-            embeddings = self.model.encode(
-                self.train_questions, 
-                prompt_name=prompt_name,
-                batch_size=32, 
-                show_progress_bar=True,
-                convert_to_numpy=True,
-                normalize_embeddings=True
-            )
+        # Prepare training documents with optimized prompts
+        if self.use_task_prompts:
+            logger.info("📝 Using latest EmbeddingGemma document prompts (Sept 2025)")
+            prompted_questions = [
+                self._get_document_prompt(question, title=None) 
+                for question in self.train_questions
+            ]
         else:
-            embeddings = self.model.encode(
-                self.train_questions, 
-                batch_size=32, 
-                show_progress_bar=True,
-                convert_to_numpy=True,
-                normalize_embeddings=True
-            )
+            prompted_questions = self.train_questions
+        
+        # Generate embeddings with config parameters
+        embeddings = self.model.encode(
+            prompted_questions, 
+            batch_size=config.BATCH_SIZE,
+            show_progress_bar=config.SHOW_PROGRESS_BAR,
+            convert_to_numpy=config.CONVERT_TO_NUMPY,
+            normalize_embeddings=config.NORMALIZE_EMBEDDINGS
+        )
         
         # Build FAISS index
         self.index = faiss.IndexFlatIP(embeddings.shape[1])
@@ -212,36 +212,35 @@ class BengaliLegalRAG:
         
         logger.info(f"✅ FAISS index built: {self.index.ntotal} vectors, {embeddings.shape[1]}D")
     
-    def classify(self, query: str, top_k: int = 5) -> Dict:
+    def classify(self, query: str, top_k: Optional[int] = None) -> Dict:
         """
-        Classify Bengali legal query using semantic search
+        Classify Bengali legal query using semantic search with optimized EmbeddingGemma prompts
         
         Args:
             query: Bengali text to classify
-            top_k: Number of similar examples to consider
+            top_k: Number of similar examples to consider (default from config)
             
         Returns:
             Classification result with confidence score
         """
         if self.index is None:
             raise RuntimeError("Index not built. System not properly initialized.")
+            
+        # Use config default if not specified
+        top_k = top_k or config.TOP_K_SIMILAR
         
-        # Generate query embedding
-        prompt_name = self._get_prompt_name()
-        
-        if prompt_name:
-            query_embedding = self.model.encode(
-                [query], 
-                prompt_name=prompt_name,
-                convert_to_numpy=True,
-                normalize_embeddings=True
-            )
+        # Generate query embedding with optimized prompts
+        if self.use_task_prompts:
+            prompted_query = self._get_query_prompt(query)
+            logger.debug(f"🔍 Using optimized query prompt: {prompted_query[:50]}...")
         else:
-            query_embedding = self.model.encode(
-                [query], 
-                convert_to_numpy=True,
-                normalize_embeddings=True
-            )
+            prompted_query = query
+            
+        query_embedding = self.model.encode(
+            [prompted_query],
+            convert_to_numpy=config.CONVERT_TO_NUMPY,
+            normalize_embeddings=config.NORMALIZE_EMBEDDINGS
+        )
         
         # Search similar questions
         scores, indices = self.index.search(query_embedding.astype('float32'), top_k)

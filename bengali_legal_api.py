@@ -7,46 +7,34 @@ FastAPI endpoint for Bengali legal intent detection using EmbeddingGemma-300M RA
 Based on user's reference code structure but optimized for EmbeddingGemma.
 """
 
-import os
 import time
 import json
 import random
 import csv
-from typing import List
+from typing import List, Dict, Any
 from pathlib import Path
 import sys
-
-# Add scripts directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent / "scripts"))
-
-# Environment setup
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-os.environ["OMP_NUM_THREADS"] = "1"
 
 from fastapi import FastAPI
 from pydantic import BaseModel
 from filelock import FileLock
 import logging
 
+# Import centralized configuration and RAG system
+from config import config
 from bengali_legal_rag import BengaliLegalRAG
 
 # Logging setup
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=getattr(logging, config.LOG_LEVEL))
 logger = logging.getLogger(__name__)
 
-# Initialize FastAPI app
-app = FastAPI(title="Bengali Legal Bot API", description="EmbeddingGemma-powered Bengali legal intent detection")
+# Initialize FastAPI app with config
+app = FastAPI(title=config.API_TITLE, description=config.API_DESCRIPTION)
 
-# RAG system initialization
+# RAG system initialization with centralized config
 logger.info("Initializing Bengali Legal RAG system...")
-rag = BengaliLegalRAG(
-    train_file="data/train/bengali_legal_train.csv",
-    test_file="data/test/bengali_legal_test.csv",
-    confidence_threshold=0.5,
-    embedding_dim=768,
-    use_task_prompts=True
-)
-logger.info(" RAG system ready!")
+rag = BengaliLegalRAG()  # Uses config defaults
+logger.info("✅ RAG system ready!")
 
 # Pydantic models
 class RequestBody(BaseModel):
@@ -57,30 +45,56 @@ class RequestBody(BaseModel):
 class Question(BaseModel):
     question: str
 
-# Configuration
-CONFIDENCE_THRESHOLD = 0.5
-LOG_DIR = Path("logs")
-LOG_DIR.mkdir(exist_ok=True)
+# Performance tracking for dynamic metrics
+class PerformanceTracker:
+    """Track real-time performance metrics"""
+    def __init__(self):
+        self.request_times = []
+        self.request_count = 0
+    
+    def record_request(self, processing_time: float):
+        self.request_times.append(processing_time)
+        self.request_count += 1
+        # Keep only last 1000 requests for rolling metrics
+        if len(self.request_times) > 1000:
+            self.request_times.pop(0)
+    
+    def get_qps(self) -> float:
+        """Calculate queries per second"""
+        if len(self.request_times) < 2:
+            return 0.0
+        return min(1.0 / (sum(self.request_times[-10:]) / len(self.request_times[-10:])), 100.0)
 
-# Random responses for low-confidence predictions
-RANDOM_RESPONSES = [
-    "আপনার প্রশ্নের জন্য ধন্যবাদ, দয়া করে আরও তথ্য জানতে আবার জিজ্ঞাসা করুন।",
-    "আপনার প্রশ্নের জন্য ধন্যবাদ, দয়া করে আবার বলবেন।",
-    "আপনার প্রশ্নটি পরিষ্কার নয়, দয়া করে আবার জিজ্ঞাসা করুন।",
-    "প্রশ্নটি বোঝা যাচ্ছে না, আরও নির্দিষ্টভাবে জিজ্ঞাসা করলে ভালো হবে।",
-    "আপনার প্রশ্নের জন্য ধন্যবাদ, বিস্তারিতভাবে পুনরায় জিজ্ঞাসা করবেন কি?",
-    "প্রশ্নটি একটু পরিষ্কার করে আবার বলবেন।",
-    "দয়া করে আরও বিস্তারিতভাবে আপনার প্রশ্নটি করবেন।",
-    "আপনার প্রশ্নটি বুঝতে কিছুটা অসুবিধা হচ্ছে, দয়া করে আরেকবার জিজ্ঞাসা করুন।",
-    "অনুগ্রহ করে প্রশ্নটি পুনরায় ব্যাখ্যা করবেন, আমি সাহায্য করতে প্রস্তুত।",
-    "প্রশ্নটি স্পষ্ট নয়, দয়া করে আরেকবার জিজ্ঞাসা করুন।"
-]
+# Global performance tracker
+perf_tracker = PerformanceTracker()
 
-def log_irrelevant_query(question: str, filepath: str = "logs/irrelevant_questions.csv"):
+# Get real-time system metrics
+def get_dynamic_metrics() -> Dict[str, Any]:
+    """Calculate real-time system performance metrics"""
+    # Get actual test evaluation
+    try:
+        test_eval = rag.evaluate(use_test_set=True)
+        return {
+            "test_accuracy": f"{test_eval['accuracy']:.1%}",
+            "confident_accuracy": f"{test_eval['confident_accuracy']:.1%}", 
+            "average_confidence": f"{test_eval['average_confidence']:.3f}",
+            "query_speed": f"{perf_tracker.get_qps():.1f} QPS"
+        }
+    except Exception as e:
+        logger.warning(f"Failed to get dynamic metrics: {e}")
+        return {
+            "test_accuracy": "N/A",
+            "confident_accuracy": "N/A",
+            "average_confidence": "N/A", 
+            "query_speed": f"{perf_tracker.get_qps():.1f} QPS"
+        }
+
+def log_irrelevant_query(question: str, filepath: str = None):
     """Log queries with low confidence scores"""
+    filepath = filepath or config.IRRELEVANT_QUERIES_FILE
     lock_path = filepath + ".lock"
     with FileLock(lock_path):
-        if os.path.exists(filepath):
+        if Path(filepath).exists():
             try:
                 import pandas as pd
                 df = pd.read_csv(filepath)
@@ -99,11 +113,12 @@ def log_irrelevant_query(question: str, filepath: str = "logs/irrelevant_questio
                 writer.writerow([question])
 
 def log_mapped_query(user_input: str, matched_question: str, tag: str, confidence: float, 
-                     filepath: str = "logs/mapped_queries.csv"):
+                     filepath: str = None):
     """Log successful query mappings"""
+    filepath = filepath or config.MAPPED_QUERIES_FILE
     lock_path = filepath + ".lock"
     with FileLock(lock_path):
-        file_exists = os.path.exists(filepath)
+        file_exists = Path(filepath).exists()
         
         with open(filepath, mode='a', newline='', encoding='utf-8') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=["user_input", "matched_question", "tag", "confidence"])
@@ -120,13 +135,12 @@ def log_mapped_query(user_input: str, matched_question: str, tag: str, confidenc
 
 @app.get("/")
 def read_root():
+    """API root with real-time performance metrics"""
+    dynamic_metrics = get_dynamic_metrics()
     return {
-        "message": "Bengali Legal Bot API with EmbeddingGemma",
-        "model": "google/embeddinggemma-300m",
-        "accuracy": "97.0% on validation data",
-        "confident_accuracy": "97.0% on confident predictions",
-        "average_confidence": "0.990",
-        "query_speed": "51.0 QPS"
+        "message": "Bengali Legal Bot API with EmbeddingGemma (Sept 2025 optimized)",
+        "model": config.MODEL_NAME,
+        **dynamic_metrics
     }
 
 @app.get("/health")
@@ -141,13 +155,16 @@ def health_check():
 
 @app.post("/classify")
 async def classify_query(question: Question):
-    """Simple classification endpoint"""
+    """Simple classification endpoint with performance tracking"""
     try:
         start_time = time.time()
         
         result = rag.classify(question.question)
         
         processing_time = time.time() - start_time
+        
+        # Record performance metrics
+        perf_tracker.record_request(processing_time)
         
         return {
             "query": question.question,
@@ -156,7 +173,7 @@ async def classify_query(question: Question):
             "is_confident": result['is_confident'],
             "similar_questions": result['similar_questions'][:3],  # Top 3
             "processing_time": processing_time,
-            "threshold": rag.confidence_threshold
+            "threshold": config.CONFIDENCE_THRESHOLD
         }
         
     except Exception as e:
@@ -197,7 +214,7 @@ async def get_response(body: RequestBody):
         similar_questions = intent_result['similar_questions']
         
         # Determine response based on confidence
-        if confidence >= CONFIDENCE_THRESHOLD and is_confident:
+        if confidence >= config.CONFIDENCE_THRESHOLD and is_confident:
             # High confidence - use the most similar question as response
             response = f"আপনার প্রশ্নের উত্তর: {predicted_tag.replace('namjari_', '')} সংক্রান্ত তথ্য। " \
                       f"সবচেয়ে মিল: {similar_questions[0]['question']}"
@@ -214,7 +231,7 @@ async def get_response(body: RequestBody):
             
         else:
             # Low confidence - use fallback response
-            response = random.choice(RANDOM_RESPONSES)
+            response = random.choice(config.RANDOM_RESPONSES)
             response_tag = "out_of_scope"
             is_relevant = False
             
@@ -240,9 +257,9 @@ async def get_response(body: RequestBody):
         is_conversation_finished = response_tag == "goodbye"
         is_agent_calling = response_tag == "agent_calling"
         
-        # Limit message history
-        if len(messages) >= 6:
-            messages = messages[-4:]
+        # Limit message history using config
+        if len(messages) >= config.MAX_MESSAGE_HISTORY:
+            messages = messages[-config.RESET_THRESHOLD:]
             logger.info("Message history reset!")
         
         # Convert messages back to string
@@ -250,6 +267,9 @@ async def get_response(body: RequestBody):
         
         end_time = time.time()
         processing_time = end_time - start_time
+        
+        # Record performance metrics
+        perf_tracker.record_request(processing_time)
         
         # Detailed logging
         log_string = f"""
@@ -265,7 +285,7 @@ async def get_response(body: RequestBody):
         logger.info(log_string)
         
         # Save detailed log
-        with open("logs/query_log.txt", "a", encoding="utf-8") as log_file:
+        with open(config.QUERY_LOG_FILE, "a", encoding="utf-8") as log_file:
             log_file.write(log_string + "\n" + "-" * 80 + "\n")
         
         return {
@@ -290,17 +310,18 @@ async def get_response(body: RequestBody):
 
 @app.get("/stats")
 def get_stats():
-    """Get system statistics"""
+    """Get system statistics with real-time metrics"""
     stats = rag.get_stats()
+    dynamic_metrics = get_dynamic_metrics()
     return {
         "model": stats['model'],
-        "faiss_index": stats['faiss_index'],
+        "faiss_index": stats['faiss_index'], 
         "training_samples": stats['training_samples'],
         "test_samples": stats['test_samples'],
         "total_tags": stats['total_tags'],
-        "test_accuracy": "97.0%",
         "confidence_threshold": stats['confidence_threshold'],
-        "device": stats['device']
+        "device": stats['device'],
+        **dynamic_metrics
     }
 
 @app.get("/tags")
@@ -315,15 +336,16 @@ def get_available_tags():
 if __name__ == "__main__":
     import uvicorn
     
-    print("🚀 Starting Bengali Legal API with EmbeddingGemma")
-    print("=" * 50)
+    print("🚀 Starting Bengali Legal API with EmbeddingGemma (Sept 2025 optimized)")
+    print("=" * 60)
     print(f"🚀 Training Samples: {len(rag.train_questions)}")
     print(f"📊 Test Samples: {len(rag.test_questions)}")
     print(f"🏷️  Total Tags: {len(set(rag.train_tags))}")
     print(f"🎯 Confidence Threshold: {rag.confidence_threshold}")
     print(f"💻 Device: {rag.model.device}")
-    print("=" * 50)
-    print(f"API will be available at: http://127.0.0.1:8000")
-    print(f"Docs available at: http://127.0.0.1:8000/docs")
+    print(f"📝 Using Latest EmbeddingGemma Prompts: {rag.use_task_prompts}")
+    print("=" * 60)
+    print(f"API will be available at: http://{config.API_HOST}:{config.API_PORT}")
+    print(f"Docs available at: http://{config.API_HOST}:{config.API_PORT}/docs")
     
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host=config.API_HOST, port=config.API_PORT)
