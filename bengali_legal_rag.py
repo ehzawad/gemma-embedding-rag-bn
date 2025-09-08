@@ -257,13 +257,13 @@ class BengaliLegalRAG:
         # Primary prediction from most similar
         predicted_tag = similar_questions[0]['tag']
         confidence = similar_questions[0]['similarity']
-        is_confident = confidence >= self.confidence_threshold
+        meets_threshold = confidence >= self.confidence_threshold
         
         return {
             'query': query,
             'predicted_tag': predicted_tag,
             'confidence': confidence,
-            'is_confident': is_confident,
+            'meets_threshold': meets_threshold,
             'similar_questions': similar_questions
         }
     
@@ -303,21 +303,11 @@ class BengaliLegalRAG:
         accuracy = accuracy_score(true_tags, predictions)
         avg_confidence = np.mean(confidences)
         
-        # Confident predictions accuracy
-        confident_mask = np.array(confidences) >= self.confidence_threshold
-        if confident_mask.sum() > 0:
-            confident_accuracy = accuracy_score(
-                np.array(true_tags)[confident_mask],
-                np.array(predictions)[confident_mask]
-            )
-        else:
-            confident_accuracy = 0.0
+        # Remove high confidence metrics - not needed
         
         return {
             'accuracy': accuracy,
-            'confident_accuracy': confident_accuracy,
             'average_confidence': avg_confidence,
-            'confident_predictions': confident_mask.sum(),
             'total_samples': len(questions),
             'predictions': predictions,
             'true_labels': true_tags,
@@ -346,7 +336,6 @@ class BengaliLegalRAG:
         dataset_type = "Test Set" if use_test_set else "Training Set"
         plt.title(f'Bengali Legal RAG Confusion Matrix - {dataset_type}\n'
                  f'Accuracy: {eval_results["accuracy"]:.1%} | '
-                 f'Confident Accuracy: {eval_results["confident_accuracy"]:.1%} | '
                  f'Avg Confidence: {eval_results["average_confidence"]:.3f}')
         plt.xlabel('Predicted Category')
         plt.ylabel('True Category')
@@ -394,7 +383,7 @@ def main():
     print(f"\n📝 Sample Classifications:")
     for query in test_queries:
         result = rag.classify(query)
-        status = "✅" if result['is_confident'] else "⚠️"
+        status = "✅" if result['meets_threshold'] else "⚠️"
         print(f"{status} {query}")
         print(f"   → {result['predicted_tag'].replace('namjari_', '')} (confidence: {result['confidence']:.3f})")
     
@@ -412,9 +401,9 @@ def main():
     eval_results = rag.evaluate(use_test_set=True)
     print(f"\n🎯 Test Set Results:")
     print(f"  Accuracy: {eval_results['accuracy']:.1%}")
-    print(f"  Confident Accuracy: {eval_results['confident_accuracy']:.1%}")
+    # High confidence metrics removed
     print(f"  Average Confidence: {eval_results['average_confidence']:.3f}")
-    print(f"  Confident Predictions: {eval_results['confident_predictions']}/{eval_results['total_samples']}")
+    # High confidence metrics removed
     
     # Note: Confusion matrix generation moved to train_vs_test_evaluator.py
     print(f"\n📊 To generate confusion matrix, run: python train_vs_test_evaluator.py")

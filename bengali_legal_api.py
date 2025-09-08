@@ -76,7 +76,7 @@ def get_dynamic_metrics() -> Dict[str, Any]:
         test_eval = rag.evaluate(use_test_set=True)
         return {
             "test_accuracy": f"{test_eval['accuracy']:.1%}",
-            "confident_accuracy": f"{test_eval['confident_accuracy']:.1%}", 
+            # High confidence accuracy removed 
             "average_confidence": f"{test_eval['average_confidence']:.3f}",
             "query_speed": f"{perf_tracker.get_qps():.1f} QPS"
         }
@@ -84,7 +84,7 @@ def get_dynamic_metrics() -> Dict[str, Any]:
         logger.warning(f"Failed to get dynamic metrics: {e}")
         return {
             "test_accuracy": "N/A",
-            "confident_accuracy": "N/A",
+            # High confidence accuracy removed
             "average_confidence": "N/A", 
             "query_speed": f"{perf_tracker.get_qps():.1f} QPS"
         }
@@ -170,7 +170,7 @@ async def classify_query(question: Question):
             "query": question.question,
             "predicted_tag": result['predicted_tag'],
             "confidence": result['confidence'],
-            "is_confident": result['is_confident'],
+            "meets_threshold": result['meets_threshold'],
             "similar_questions": result['similar_questions'][:3],  # Top 3
             "processing_time": processing_time,
             "threshold": config.CONFIDENCE_THRESHOLD
@@ -210,11 +210,11 @@ async def get_response(body: RequestBody):
         
         predicted_tag = intent_result['predicted_tag']
         confidence = intent_result['confidence']
-        is_confident = intent_result['is_confident']
+        meets_threshold = intent_result['meets_threshold']
         similar_questions = intent_result['similar_questions']
         
         # Determine response based on confidence
-        if confidence >= config.CONFIDENCE_THRESHOLD and is_confident:
+        if confidence >= config.CONFIDENCE_THRESHOLD and meets_threshold:
             # High confidence - use the most similar question as response
             response = f"আপনার প্রশ্নের উত্তর: {predicted_tag.replace('namjari_', '')} সংক্রান্ত তথ্য। " \
                       f"সবচেয়ে মিল: {similar_questions[0]['question']}"
@@ -276,7 +276,7 @@ async def get_response(body: RequestBody):
         Query: {user_actual_input}
         Predicted Tag: {predicted_tag}
         Confidence: {confidence:.3f}
-        Is Confident: {is_confident}
+        Meets Threshold: {meets_threshold}
         Processing Time: {processing_time:.3f}s
         Similar Question: {similar_questions[0]['question'] if similar_questions else 'N/A'}
         Response: {response[:100]}...

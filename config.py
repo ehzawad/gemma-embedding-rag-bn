@@ -34,7 +34,8 @@ class SystemConfig:
     CONVERT_TO_NUMPY: bool = True
     
     # RAG Configuration
-    CONFIDENCE_THRESHOLD: float = 0.5
+    # CONFIDENCE_THRESHOLD: float = 0.75
+    CONFIDENCE_THRESHOLD: float = 0.932
     TOP_K_SIMILAR: int = 5
     
     # File Paths
